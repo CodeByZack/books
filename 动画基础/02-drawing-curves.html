@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<canvas id="canvas" width="400" height="400" style="background:rgba(0, 0, 0, 0.39);"></canvas>
+
+<script src="./utils.js"></script>
+
+<script>
+window.onload = function(){
+    var canvas = document.getElementById("canvas"),
+        ctx = canvas.getContext("2d"),
+        mouse = utils.captureMouse(canvas);
+    
+    var x0 = 100,y0=200;
+    var x2 = 300,y2=400;
+
+    canvas.addEventListener('mousemove',function(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+//        var x1 = mouse.x, y1 =mouse.y;
+        var x1 = mouse.x*2 -(x0+x2)/2;
+        var y1 = mouse.y*2 -(y0+y2)/2;
+
+        ctx.beginPath();
+        ctx.moveTo(x0,y0);
+        ctx.quadraticCurveTo(x1,y1,x2,y2);
+        ctx.stroke();
+    },false);
+
+};
+
+</script>
+</body>
+</html>
